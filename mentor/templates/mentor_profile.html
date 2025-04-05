@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Mentor Profile | Mentor Link{% endblock %}
+
+{% block content %}
+<main class="max-w-3xl mx-auto mt-10 p-6 bg-white rounded-2xl shadow-lg">
+  <h2 class="text-2xl font-bold mb-4 text-blue-700">Mentor Profile</h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <p><strong>Username:</strong> {{ user.username }}</p>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Full Name:</strong> {{ profile.full_name }}</p>
+      <p><strong>Expertise:</strong> {{ profile.expertise }}</p>
+      <p><strong>Experience:</strong> {{ profile.experience }} years</p>
+    </div>
+
+    <div>
+      {% if profile.photo %}
+        <img src="{{ profile.photo.url }}" alt="Mentor photo" class="rounded-xl w-48 h-48 object-cover shadow">
+      {% else %}
+        <div class="w-48 h-48 bg-gray-200 flex items-center justify-center rounded-xl">No Photo</div>
+      {% endif %}
+    </div>
+  </div>
+</main>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Available Sessions | Mentor Link{% endblock %}
+
+{% block content %}
+<main class="min-h-[90vh] p-6">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-2xl font-bold mb-6 text-center">Available Mentorship Sessions</h1>
+
+        {% if sessions %}
+            <div class="space-y-6">
+                {% for session in sessions %}
+                    <div class="border p-5 rounded-xl shadow bg-white">
+                        <h2 class="text-xl font-semibold mb-2">{{ session.topic }}</h2>
+                        <p><strong>Mentor:</strong> {{ session.mentor.user.username }}</p>
+                        <p><strong>Date:</strong> {{ session.scheduled_date|date:"F j, Y, g:i a" }}</p>
+                        <p><strong>Duration:</strong> {{ session.duration_minutes }} mins</p>
+                        <p><strong>Slots Left:</strong> {{ session.remaining_slots }}</p>
+
+                        {% if user.profile in session.mentees.all %}
+                            <p class="text-green-600 mt-3 font-semibold">You have joined this session.</p>
+                        {% elif session.remaining_slots > 0 %}
+                            <a href="{% url 'join_session' session.pk %}" class="inline-block bg-blue-600 text-white px-4 py-2 rounded mt-4 hover:bg-blue-700 transition">
+                                Join Session
+                            </a>
+                        {% else %}
+                            <p class="text-red-500 mt-3 font-semibold">Session is full.</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-center text-gray-500">No available sessions at the moment.</p>
+        {% endif %}
+    </div>
+</main>
+{% endblock %}

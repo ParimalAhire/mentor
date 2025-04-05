@@ -1,0 +1,67 @@
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #f4f4f4;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    max-width: 700px;
+    margin: 0 auto 30px;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.hero .btn {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Features Section */
+#features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 50px 20px;
+    background-color: #ffffff;
+}
+
+.feature-card {
+    width: 300px;
+    text-align: center;
+    padding: 20px;
+}
+
+.feature-card img {
+    width: 100px;
+    margin-bottom: 15px;
+}
+
+.feature-card h3 {
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+
+/* Testimonials */
+#testimonials {
+    background-color: #e9ecef;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.testimonial {
+    max-width: 600px;
+    margin: 20px auto;
+    font-style: italic;
+    font-size: 1.1rem;
+}

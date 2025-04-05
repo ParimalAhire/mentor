@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home | Mentor Link{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="text-center py-12 bg-blue-50 rounded-lg">
+    <h2 class="text-3xl font-bold mb-4 text-blue-700">Empowering Professionals with the Right Guidance</h2>
+    <p class="text-lg max-w-2xl mx-auto text-gray-600 mb-6">
+        At <strong>Mentor Link</strong>, we connect you with seasoned mentors from various industries to help you grow professionally.
+    </p>
+    <a href="{% url 'mentor_list' %}" class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition">
+        Find a Mentor
+    </a>
+</section>
+
+<!-- Features Section -->
+<section class="grid md:grid-cols-3 gap-8 py-16">
+    <div class="bg-white p-6 rounded shadow text-center">
+        <img src="{% static 'images/match.png' %}" alt="Smart Matching" class="mx-auto h-16 mb-4">
+        <h3 class="text-xl font-semibold mb-2">Smart Matching</h3>
+        <p class="text-gray-600">Get matched with mentors based on your career goals and interests.</p>
+    </div>
+    <div class="bg-white p-6 rounded shadow text-center">
+        <img src="{% static 'images/track.png' %}" alt="Track Progress" class="mx-auto h-16 mb-4">
+        <h3 class="text-xl font-semibold mb-2">Track Progress</h3>
+        <p class="text-gray-600">Monitor your growth with dashboards tailored to your journey.</p>
+    </div>
+    <div class="bg-white p-6 rounded shadow text-center">
+        <img src="{% static 'images/connect.png' %}" alt="1-on-1 Sessions" class="mx-auto h-16 mb-4">
+        <h3 class="text-xl font-semibold mb-2">1-on-1 Sessions</h3>
+        <p class="text-gray-600">Engage directly with mentors through video calls and chats.</p>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="bg-white py-12 text-center border-t">
+    <h2 class="text-2xl font-bold text-blue-700 mb-4">What Professionals Say</h2>
+    <blockquote class="italic text-gray-600 max-w-2xl mx-auto">
+        “Mentor Link helped me gain real-world clarity about entering the product design space. The sessions were insightful and hands-on.”<br>
+        — Aditi Sharma, Product Designer
+    </blockquote>
+</section>
+{% endblock %}

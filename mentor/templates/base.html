@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Mentor Link{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="{% static 'images/logo.png' %}">
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto flex items-center justify-between px-4 py-3">
+            <div class="flex items-center gap-2">
+                <img src="{% static 'images/logo.png' %}" alt="Mentor Link Logo" class="h-10 w-10">
+                <h1 class="text-xl font-bold text-blue-700">Mentor Link</h1>
+            </div>
+
+            <nav>
+                <ul class="flex space-x-6 text-sm font-medium text-gray-700 items-center">
+
+                    <!-- Left Navigation -->
+                    <li><a href="{% url 'home' %}" class="hover:text-blue-600">Home</a></li>
+
+                    <!-- Discover Dropdown -->
+                    <li>
+                        <a href="{% url 'discover' %}" class="hover:text-blue-600">Discover</a>
+                    </li>
+
+                    <!-- Info Dropdown -->
+                    <li class="relative group">
+                        <span class="hover:text-blue-600 cursor-pointer">Info</span>
+                        <ul class="absolute hidden group-hover:block bg-white border mt-2 py-2 rounded shadow-md">
+                            <li><a href="{% url 'about' %}" class="block px-4 py-2 hover:bg-gray-100">About Us</a></li>
+                            <li><a href="{% url 'approach' %}" class="block px-4 py-2 hover:bg-gray-100">Our Approach</a></li>
+                            <li><a href="{% url 'contact' %}" class="block px-4 py-2 hover:bg-gray-100">Contact</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Right Navigation -->
+                    {% if user.is_authenticated %}
+                        <!-- Dynamic Profile Link -->
+                        {% if user.profile.user_type == 'mentor' %}
+                            <li class="ml-6"><a href="{% url 'mentor_profile' %}" class="hover:text-blue-600">Profile</a></li>
+                        {% elif user.profile.user_type == 'mentee' %}
+                            <li class="ml-6"><a href="{% url 'mentee_profile' %}" class="hover:text-blue-600">Profile</a></li>
+                        {% endif %}
+                        <li><a href="{% url 'logout' %}" class="hover:text-red-500">Logout</a></li>
+                    {% else %}
+                        <li class="ml-6"><a href="{% url 'login' %}" class="hover:text-blue-600">Login</a></li>
+                        <li><a href="{% url 'register' %}" class="hover:text-blue-600">Register</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Content -->
+    <main class="container mx-auto px-4 py-8">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 text-center py-6 mt-10">
+        <div class="text-gray-500 text-sm">
+            <p class="mb-2">Connect with us:</p>
+            <div class="flex justify-center gap-4 mb-4">
+                <a href="https://www.instagram.com/om_n_sinkar">
+                    <img src="{% static 'images/facebook.png' %}" alt="Facebook" class="h-6 w-6">
+                </a>
+                <a href="#"><img src="{% static 'images/linkdein.png' %}" alt="LinkedIn" class="h-6 w-6"></a>
+                <a href="#"><img src="{% static 'images/instagram.png' %}" alt="Instagram" class="h-6 w-6"></a>
+            </div>
+            <div>
+                <a href="#" class="underline">Terms of Service</a> |
+                <a href="#" class="underline">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>
